@@ -24,6 +24,20 @@ public class PodcastController {
   @Autowired
   PodcastRepository podcastRepository;
 
+  @GetMapping("/test")
+  String home() {
+    try {
+      Podcast newPodcast = podcastRepository.save(new Podcast());
+      ResponseEntity<Podcast> entity = new ResponseEntity<>(newPodcast, HttpStatus.CREATED);
+      System.out.println(entity.toString());
+      return "test done";
+    } catch (Exception e) {
+      e.printStackTrace();
+      // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return "Hello World!";
+  }
+
   @GetMapping("/podcasts")
   public ResponseEntity<List<Podcast>> getAllpodcasts() {
     try {
