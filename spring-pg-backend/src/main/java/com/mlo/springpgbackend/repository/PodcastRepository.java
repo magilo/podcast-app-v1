@@ -8,3 +8,4 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
   // refer to sorting tutorial
   // https://www.bezkoder.com/spring-data-sort-multiple-columns/
 }
+
