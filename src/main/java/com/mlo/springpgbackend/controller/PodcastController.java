@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,13 +43,18 @@ public class PodcastController {
   @GetMapping("/podcasts")
   public ResponseEntity<List<Podcast>> getAllpodcasts() {
     try {
-      List<Podcast> podcasts = new ArrayList<Podcast>();
-      podcastRepository.findAll().forEach(podcasts::add);
-
+      List<Podcast> podcasts = podcastRepository.findAll();
       if (podcasts.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
       return new ResponseEntity<>(podcasts, HttpStatus.OK);
+      // List<Podcast> podcasts = new ArrayList<Podcast>();
+      // podcastRepository.findAll().forEach(podcasts::add);
+
+      // if (podcasts.isEmpty()) {
+      // return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+      // }
+      // return new ResponseEntity<>(podcasts, HttpStatus.OK);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
@@ -61,6 +68,26 @@ public class PodcastController {
       return new ResponseEntity<>(newPodcast, HttpStatus.CREATED);
     } catch (Exception e) {
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/podcasts/{id}")
+  public ResponseEntity<HttpStatus> deletePodcast(@PathVariable("id") long id) {
+    try {
+      podcastRepository.deleteById(id);
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @DeleteMapping("/podcasts")
+  public ResponseEntity<HttpStatus> deleteAllPodcasts() {
+    try {
+      podcastRepository.deleteAll();
+      return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
