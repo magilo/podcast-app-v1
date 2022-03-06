@@ -25,7 +25,7 @@ class Results extends Component {
   }
 
   render() {
-    console.log('inside result', this.props.searchResults)
+    // console.log('inside result', this.props.searchResults)
     const { searchResults } = this.props
     if (searchResults.length > 0) {
 

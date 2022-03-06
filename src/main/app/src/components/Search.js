@@ -43,7 +43,7 @@ class Search extends Component {
 
   handleResultAddPodcastCB = (childData) => {
     //pass to top level
-    console.log('resultadd', childData)
+    // console.log('resultadd', childData)
     this.props.addPodcastCB(childData)
   }
 

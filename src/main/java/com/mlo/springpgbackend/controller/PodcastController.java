@@ -62,11 +62,12 @@ public class PodcastController {
 
   @PostMapping("/podcasts")
   public ResponseEntity<Podcast> addPodcast(@RequestBody Podcast podcast) {
-    System.out.println("hellooooo" + podcast);
+    // System.out.println("hellooooo" + podcast);
     try {
       Podcast newPodcast = podcastRepository.save(podcast);
       return new ResponseEntity<>(newPodcast, HttpStatus.CREATED);
     } catch (Exception e) {
+      e.printStackTrace();
       return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }

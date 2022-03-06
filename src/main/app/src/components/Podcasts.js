@@ -13,6 +13,7 @@ class Podcasts extends Component {
     }
     this.handleViewDetailsCB = this.handleViewDetailsCB.bind(this)
     this.handleAddPodcastCB = this.handleAddPodcastCB.bind(this)
+    this.handleDeletePodcastCB = this.handleDeletePodcastCB.bind(this)
   }
 
   handleViewDetailsCB = (childData) => {
@@ -20,12 +21,12 @@ class Podcasts extends Component {
     // console.log('viewDetailsCB', childData)
     this.setState({ podcastDetails: childData }, function () {
 
-      console.log("handleView", this.state.podcastDetails)
+      // console.log("handleView", this.state.podcastDetails)
     })
   }
 
   handleAddPodcastCB = async (childData) => {
-    console.log('add podcastcb', childData)
+
     // this.setState({ podcastToAdd: childData })
     try {
       // console.log('inside comp mount')
@@ -33,7 +34,22 @@ class Podcasts extends Component {
       // this.setState({ playlist: data });
       if (res.status === 201) {
         const { data } = await axios.get('/api/podcasts')
-        console.log(data)
+        // console.log(data)
+        this.setState({ playlist: data });
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  handleDeletePodcastCB = async (childData) => {
+    console.log('delete podcastcb', childData)
+    try {
+      const res = await axios.delete(`/api/podcasts/${childData}`);
+      // console.log('delete', res)
+      if (res.status === 204) {
+        const { data } = await axios.get('/api/podcasts')
+        // console.log(data)
         this.setState({ playlist: data });
       }
     } catch (err) {
@@ -69,7 +85,8 @@ class Podcasts extends Component {
         <div className="App-playlist">
           <h5> playlist </h5>
           <Playlist
-            playlist={playlist} />
+            playlist={playlist}
+            deletePodcastCB={this.handleDeletePodcastCB} />
         </div>
       </div>
     )

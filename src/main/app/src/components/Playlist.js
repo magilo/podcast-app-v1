@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+//this can be a functional component
+
 class Playlist extends Component {
   constructor(props) {
     super(props);
@@ -10,21 +12,26 @@ class Playlist extends Component {
     this.handleDeletePodcast = this.handleDeletePodcast.bind(this);
   }
 
-  async handleDeletePodcast(event) {
-    event.preventDefault();
-    try {
-      const res = await axios.delete(`/api/podcasts/${event.target.value}`);
-      const updatedPlaylist = this.state.playlist.filter(function (podcast) {
-        if (podcast.id === parseInt(event.target.value)) {
-          return false;
-        }
-        return true;
-      });
-      this.setState({ playlist: updatedPlaylist })
-    } catch (err) {
-      console.log(err)
-    }
+  handleDeletePodcast(podcastToDelete, event) {
+    event.preventDefault()
+    this.props.deletePodcastCB(podcastToDelete.id)
   }
+
+  // async handleDeletePodcast(event) {
+  //   event.preventDefault();
+  //   try {
+  //     const res = await axios.delete(`/api/podcasts/${event.target.value}`);
+  //     const updatedPlaylist = this.state.playlist.filter(function (podcast) {
+  //       if (podcast.id === parseInt(event.target.value)) {
+  //         return false;
+  //       }
+  //       return true;
+  //     });
+  //     this.setState({ playlist: updatedPlaylist })
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
 
 
@@ -40,8 +47,6 @@ class Playlist extends Component {
 
   render() {
     const { playlist } = this.props
-    // const { playlist } = this.state;
-    console.log("where's the playlist", playlist)
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
@@ -49,7 +54,7 @@ class Playlist extends Component {
           <button
             type="remove"
             value={p.id}
-            onClick={this.handleDeletePodcast}> x</button>
+            onClick={this.handleDeletePodcast.bind(this, p)}> x</button>
         </div>)
       return (
         <div>
