@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Search, Titlebar } from './components'
+import { Search, Titlebar, Playlist } from './components'
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         </div>
 
         <div className="App-playlist">
-          <Search />
+          <Playlist />
         </div>
       </div>
       <footer className="App-link">
