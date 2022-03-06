@@ -32,8 +32,8 @@
 }
 
 .App-search {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
@@ -44,8 +44,8 @@
 }
 
 .App-podcast-view {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
@@ -56,8 +56,8 @@
 }
 
 .App-playlist {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
@@ -71,6 +71,35 @@
   color: #61dafb;
   float : bottom;
 }
+
+.search-bar form{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.search-bar input{
+
+  width: 30vh;
+  height: 30px;
+
+}
+
+.search-bar button{
+  font-size: calc(10px + 1vmin);
+  width: 5vh;
+  height: 35px;
+
+}
+
+#picture{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+#add-icon{
+  font-size: calc(10px + 1vmin);
+}
+
 
 
 @keyframes App-logo-spin {

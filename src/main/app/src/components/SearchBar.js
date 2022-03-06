@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ""
+      userReqParams: "",
+      results: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
@@ -18,11 +20,12 @@ class Search extends Component {
     })
   }
 
+
   handleSearchSubmit(event) {
-    this.props.searchSubmitCB(this.state.title)
+    this.props.searchSubmitCB(this.state.userReqParams)
     event.preventDefault()
     this.setState({
-      title: ""
+      userReqParams: ""
     })
   }
 
@@ -35,19 +38,20 @@ class Search extends Component {
 
           <input
             className="search-bar"
-            name="title"
+            name="userReqParams"
             type="text"
-            value={this.state.title}
-            placeholder="e.g. pirates"
+            value={this.state.userReqParams}
+            placeholder="e.g. This American Life"
             onChange={this.handleChange}
           />
           <button
             className="search-bar"
             type="submit"
             onSubmit={this.handleSearchSubmit}>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+            </svg> */}
+            🔍
           </button>
 
         </form>

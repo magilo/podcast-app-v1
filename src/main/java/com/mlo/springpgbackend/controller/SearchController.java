@@ -37,19 +37,20 @@ public class SearchController {
   }
 
   @GetMapping("samplelist/search")
-  public ResponseEntity<JsonArray> searchPodcasts(@RequestParam(required = false) String artist,
+  public ResponseEntity<JsonArray> searchPodcasts(
+      @RequestParam(required = false) String name,
       @RequestParam(required = false) String title) {
     try {
-      if (artist != null) {
+      if (name != null) {
         System.out.println("title " + title);
-        System.out.println("artist " + artist);
-        JsonArray matchingArtist = podcastService.searchByArtist(artist);
-        return new ResponseEntity<>(matchingArtist, HttpStatus.OK);
+        System.out.println("name " + name);
+        JsonArray matchingName = podcastService.searchByName(name);
+        return new ResponseEntity<>(matchingName, HttpStatus.OK);
       }
 
       if (title != null) {
         System.out.println("title " + title);
-        System.out.println("artist " + artist);
+        System.out.println("name " + name);
         JsonArray matchingTitle = podcastService.searchByTitle(title);
         return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
       }

@@ -124,7 +124,7 @@
 											<resources>
 													<resource>
 															<directory>${frontend-src-dir}/build</directory>
-															<filtering>false</filtering>
+															<!-- <filtering>false</filtering> -->
 													</resource>
 											</resources>
 									</configuration>
