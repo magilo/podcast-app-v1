@@ -1,23 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
+import { Search, Titlebar } from './components'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Titlebar />
+      </header>
+      <div className="App-body">
+        <div className="App-search">
+          <Search />
+        </div>
+
+        <div className="App-podcast-view">
+          <Search />
+        </div>
+
+        <div className="App-playlist">
+          <Search />
+        </div>
+      </div>
+      <footer className="App-link">
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          href="https://github.com/magilo/podcast-app-v1"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          github
         </a>
-      </header>
+      </footer>
     </div>
   );
 }
