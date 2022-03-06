@@ -9,10 +9,14 @@ class Results extends Component {
     this.state = {
       searchResults: this.props.searchResults
     }
-    // this.handleResultSubmit = this.handleResultSubmit.bind(this)
+    this.handleResultSubmit = this.handleResultSubmit.bind(this)
   }
 
 
+  handleResultSubmit(podcastData, event) {
+    event.preventDefault()
+    this.props.resultSubmitCB(podcastData)
+  }
 
   render() {
     console.log('inside result', this.props.searchResults)
@@ -24,8 +28,8 @@ class Results extends Component {
           {res.title} ---
           <button
             value={res.title}
-          // disabled={movieExists(res.imdbID, nominees)}
-          // onClick={this.handleResultSubmit.bind(this, res)}
+            // disabled={movieExists(res.imdbID, nominees)}
+            onClick={this.handleResultSubmit.bind(this, res)}
           >
             +
           </button>

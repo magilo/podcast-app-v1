@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
-import { Search, Titlebar, Playlist } from './index'
+import { Search, PodcastView, Playlist } from './index'
 
 /*** top level component ***/
-class Podcasts extends Component{
-  constructor(props){
+class Podcasts extends Component {
+  constructor(props) {
     super(props)
     this.state = {
-      temp:""
+      podcastDetails: {}
     }
+    this.handleViewDetailsCB = this.handleViewDetailsCB.bind(this)
   }
 
-  render(){
+  handleViewDetailsCB = (childData) => {
+    //display podcast to user
+    console.log('viewDetailsCB', childData)
+    this.setState({ podcastDetails: childData }, function () {
+
+      console.log("handleView", this.state.podcastDetails)
+    })
+  }
+
+  render() {
+    const { podcastDetails } = this.state
     return (
       <div className="App-body">
         <div className="App-search">
-          <Search />
+          <Search
+            viewDetailsCB={this.handleViewDetailsCB} />
         </div>
 
         <div className="App-podcast-view">
-          <Search />
+          <PodcastView
+            podcastDetails={podcastDetails} />
         </div>
 
         <div className="App-playlist">
