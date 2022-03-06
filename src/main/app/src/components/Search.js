@@ -11,9 +11,9 @@ class Search extends Component {
       results: []
     }
     this.handleSearchSubmitCB = this.handleSearchSubmitCB.bind(this)
-    this.handleTitleOrArtistCB = this.handleTitleOrArtistCB.bind(this)
+    this.handleTitleOrNameCB = this.handleTitleOrNameCB.bind(this)
     this.handleResultSubmitCB = this.handleResultSubmitCB.bind(this)
-
+    this.handleResultAddPodcastCB = this.handleResultAddPodcastCB.bind(this)
   }
 
   handleSearchSubmitCB = async (childData) => {
@@ -29,8 +29,8 @@ class Search extends Component {
     }
   }
 
-  handleTitleOrArtistCB = (childData) => {
-    // console.log('search TitleOrArtistCB', childData)
+  handleTitleOrNameCB = (childData) => {
+    // console.log('search TitleOrNameCB', childData)
     this.setState({ searchByParams: childData })
   }
 
@@ -41,17 +41,19 @@ class Search extends Component {
     this.props.viewDetailsCB(childData)
   }
 
-  // async componentDidMount() {
-  //   const res = await axios.get("api/samplelist/search?title=bleh")
-  //   console.log(res);
-  // }
+  handleResultAddPodcastCB = (childData) => {
+    //pass to top level
+    console.log('resultadd', childData)
+    this.props.addPodcastCB(childData)
+  }
+
 
   render() {
     const { results } = this.state
     // console.log('this.state', this.state);
     return (
       <div>
-        <div><SearchBy titleOrArtistCB={this.handleTitleOrArtistCB} /></div>
+        <div><SearchBy titleOrNameCB={this.handleTitleOrNameCB} /></div>
         <div className="search-bar">
           <SearchBar
             searchSubmitCB={this.handleSearchSubmitCB} />
@@ -60,6 +62,7 @@ class Search extends Component {
           <Results
             searchResults={results}
             resultSubmitCB={this.handleResultSubmitCB}
+            resultAddPodcastCB={this.handleResultAddPodcastCB}
           />
         </div>
       </div>

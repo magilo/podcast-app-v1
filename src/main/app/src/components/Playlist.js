@@ -5,7 +5,7 @@ class Playlist extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      playlist: []
+      playlist: this.props.playlist
     }
     this.handleDeletePodcast = this.handleDeletePodcast.bind(this);
   }
@@ -27,18 +27,21 @@ class Playlist extends Component {
   }
 
 
-  async componentDidMount() {
-    try {
-      // console.log('inside comp mount')
-      const { data } = await axios.get('/api/podcasts')
-      this.setState({ playlist: data });
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
+  // async componentDidMount() {
+  //   try {
+  //     // console.log('inside comp mount')
+  //     const { data } = await axios.get('/api/podcasts')
+  //     this.setState({ playlist: data });
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
 
   render() {
-    const { playlist } = this.state;
+    const { playlist } = this.props
+    // const { playlist } = this.state;
+    console.log("where's the playlist", playlist)
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>

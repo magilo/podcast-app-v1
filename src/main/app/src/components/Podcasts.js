@@ -1,32 +1,64 @@
 import React, { Component } from 'react';
 import { Search, PodcastView, Playlist } from './index'
+import axios from 'axios';
 
 /*** top level component ***/
 class Podcasts extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      podcastDetails: {}
+      podcastDetails: {},
+      podcastToAdd: {},
+      playlist: []
     }
     this.handleViewDetailsCB = this.handleViewDetailsCB.bind(this)
+    this.handleAddPodcastCB = this.handleAddPodcastCB.bind(this)
   }
 
   handleViewDetailsCB = (childData) => {
     //display podcast to user
-    console.log('viewDetailsCB', childData)
+    // console.log('viewDetailsCB', childData)
     this.setState({ podcastDetails: childData }, function () {
 
       console.log("handleView", this.state.podcastDetails)
     })
   }
 
+  handleAddPodcastCB = async (childData) => {
+    console.log('add podcastcb', childData)
+    // this.setState({ podcastToAdd: childData })
+    try {
+      // console.log('inside comp mount')
+      const res = await axios.post('/api/podcasts', childData)
+      // this.setState({ playlist: data });
+      if (res.status === 201) {
+        const { data } = await axios.get('/api/podcasts')
+        console.log(data)
+        this.setState({ playlist: data });
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      // console.log('inside comp mount')
+      const { data } = await axios.get('/api/podcasts')
+      this.setState({ playlist: data });
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   render() {
-    const { podcastDetails } = this.state
+    const { podcastDetails, playlist } = this.state
     return (
       <div className="App-body">
         <div className="App-search">
           <Search
-            viewDetailsCB={this.handleViewDetailsCB} />
+            viewDetailsCB={this.handleViewDetailsCB}
+            addPodcastCB={this.handleAddPodcastCB} />
         </div>
 
         <div className="App-podcast-view">
@@ -36,7 +68,8 @@ class Podcasts extends Component {
 
         <div className="App-playlist">
           <h5> playlist </h5>
-          <Playlist />
+          <Playlist
+            playlist={playlist} />
         </div>
       </div>
     )

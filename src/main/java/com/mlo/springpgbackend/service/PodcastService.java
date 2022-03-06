@@ -51,7 +51,7 @@ public class PodcastService {
     return sampleList;
   }
 
-  public JsonArray searchByArtist(String artist) {
+  public JsonArray searchByName(String name) {
     JsonObject allData = getInitialData();
     // List<JsonObject> matching = new ArrayList<JsonObject>();
     JsonArray matching = allData.getAsJsonArray("podcasts");

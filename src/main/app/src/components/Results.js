@@ -10,12 +10,18 @@ class Results extends Component {
       searchResults: this.props.searchResults
     }
     this.handleResultSubmit = this.handleResultSubmit.bind(this)
+    this.handleResultAddPodcast = this.handleResultAddPodcast.bind(this)
   }
 
 
   handleResultSubmit(podcastData, event) {
     event.preventDefault()
     this.props.resultSubmitCB(podcastData)
+  }
+
+  handleResultAddPodcast(podcastData, event) {
+    event.preventDefault()
+    this.props.resultAddPodcastCB(podcastData)
   }
 
   render() {
@@ -31,7 +37,15 @@ class Results extends Component {
             // disabled={movieExists(res.imdbID, nominees)}
             onClick={this.handleResultSubmit.bind(this, res)}
           >
-            +
+            <span id="info-icon">🛈</span>
+          </button>
+          ---
+          <button
+            value={res.title}
+            // disabled={movieExists(res.imdbID, nominees)}
+            onClick={this.handleResultAddPodcast.bind(this, res)}
+          >
+            <span id="add-icon">+</span>
           </button>
         </div>
       );
@@ -45,7 +59,7 @@ class Results extends Component {
     } else {
       return (
         <div>
-          <h4>enter title/artist in search</h4>
+          <h4>enter title/name in search</h4>
         </div>
       )
 

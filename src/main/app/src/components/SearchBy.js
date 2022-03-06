@@ -16,7 +16,7 @@ class SearchBy extends Component {
   handleChange = (selectedOption) => {
     this.setState({ selectedOption })
     // console.log('selected', selectedOption);
-    this.props.titleOrArtistCB(selectedOption.value);
+    this.props.titleOrNameCB(selectedOption.value);
   }
 
 
