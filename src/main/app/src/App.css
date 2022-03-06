@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #fefdf9;
 }
 
 .App-logo {
@@ -14,19 +15,63 @@
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #e0dbd5;
+  min-height: 5vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #2e1d14;
+}
+
+.App-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.App-search {
+  height: 60vh;
+  width: 30vh;
+  border-radius: 6px;
+  border-style: dotted;
+  border-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 4px;
+}
+
+.App-podcast-view {
+  height: 60vh;
+  width: 30vh;
+  border-radius: 6px;
+  border-style: dotted;
+  border-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 4px;
+}
+
+.App-playlist {
+  height: 60vh;
+  width: 30vh;
+  border-radius: 6px;
+  border-style: dotted;
+  border-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 4px;
 }
 
 .App-link {
   color: #61dafb;
+  float : bottom;
 }
+
 
 @keyframes App-logo-spin {
   from {
