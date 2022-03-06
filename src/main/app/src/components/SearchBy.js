@@ -3,7 +3,7 @@ import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 
 const options = [
-  { value: 'artist', label: 'artist' },
+  { value: 'name', label: 'name' },
   { value: 'title', label: 'title' }
 ]
 
@@ -16,7 +16,7 @@ class SearchBy extends Component {
   handleChange = (selectedOption) => {
     this.setState({ selectedOption })
     // console.log('selected', selectedOption);
-    this.props.titleOrArtistCB(selectedOption);
+    this.props.titleOrArtistCB(selectedOption.value);
   }
 
 

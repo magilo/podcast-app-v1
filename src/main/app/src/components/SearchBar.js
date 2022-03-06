@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Search extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ""
+      userReqParams: "",
+      results: []
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
@@ -18,11 +20,12 @@ class Search extends Component {
     })
   }
 
+
   handleSearchSubmit(event) {
-    this.props.searchSubmitCB(this.state.title)
+    this.props.searchSubmitCB(this.state.userReqParams)
     event.preventDefault()
     this.setState({
-      title: ""
+      userReqParams: ""
     })
   }
 
@@ -35,10 +38,10 @@ class Search extends Component {
 
           <input
             className="search-bar"
-            name="title"
+            name="userReqParams"
             type="text"
-            value={this.state.title}
-            placeholder="e.g. pirates"
+            value={this.state.userReqParams}
+            placeholder="e.g. This American Life"
             onChange={this.handleChange}
           />
           <button

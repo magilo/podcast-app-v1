@@ -29,7 +29,7 @@ class Playlist extends Component {
 
   async componentDidMount() {
     try {
-      console.log('inside comp mount')
+      // console.log('inside comp mount')
       const { data } = await axios.get('/api/podcasts')
       this.setState({ playlist: data });
     } catch (err) {

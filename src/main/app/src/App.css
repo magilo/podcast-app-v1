@@ -32,8 +32,8 @@
 }
 
 .App-search {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
@@ -44,8 +44,8 @@
 }
 
 .App-podcast-view {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
@@ -56,8 +56,8 @@
 }
 
 .App-playlist {
-  height: 60vh;
-  width: 30vh;
+  height: 90vh;
+  width: 50vh;
   border-radius: 6px;
   border-style: dotted;
   border-color: #282c34;
