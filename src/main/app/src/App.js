@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import { Search, Titlebar, Playlist } from './components'
+import { Podcasts, Titlebar, Playlist } from './components'
 
 function App() {
   return (
@@ -8,19 +8,10 @@ function App() {
       <header className="App-header">
         <Titlebar />
       </header>
-      <div className="App-body">
-        <div className="App-search">
-          <Search />
-        </div>
-
-        <div className="App-podcast-view">
-          <Search />
-        </div>
-
-        <div className="App-playlist">
-          <Playlist />
-        </div>
+      <div>
+        <Podcasts />
       </div>
+
       <footer className="App-link">
         <a
           href="https://github.com/magilo/podcast-app-v1"

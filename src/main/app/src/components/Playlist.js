@@ -7,7 +7,25 @@ class Playlist extends Component {
     this.state = {
       playlist: []
     }
+    this.handleDeletePodcast = this.handleDeletePodcast.bind(this);
   }
+
+  async handleDeletePodcast(event) {
+    event.preventDefault();
+    try {
+      const res = await axios.delete(`/api/podcasts/${event.target.value}`);
+      const updatedPlaylist = this.state.playlist.filter(function (podcast) {
+        if (podcast.id === parseInt(event.target.value)) {
+          return false;
+        }
+        return true;
+      });
+      this.setState({ playlist: updatedPlaylist })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
 
   async componentDidMount() {
     try {
@@ -24,8 +42,11 @@ class Playlist extends Component {
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
-          <span > {p.title} {p.name} </span>
-          <button> x</button>
+          <span > {p.name} {p.title}  </span>
+          <button
+            type="remove"
+            value={p.id}
+            onClick={this.handleDeletePodcast}> x</button>
         </div>)
       return (
         <div>
@@ -35,7 +56,7 @@ class Playlist extends Component {
     } else {
       return (
         <div>
-
+          nothing on playlist
         </div>
       )
     }
