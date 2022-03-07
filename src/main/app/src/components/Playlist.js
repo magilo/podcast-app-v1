@@ -17,20 +17,33 @@ class Playlist extends Component {
     this.props.deletePodcastCB(podcastToDelete.id)
   }
 
+  handlePodcastToView(podcastData, event) {
+    event.preventDefault()
+    this.props.viewDetailsCB(podcastData)
+  }
+
 
   render() {
     const { playlist } = this.props
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
-          <span > {p.name} {p.title}  </span>
+          <span > {p.title} --- {p.name}   </span>
           <div>
-            -------------
+            -----------
+            <button
+              value={p.id}
+              // disabled={movieExists(res.imdbID, nominees)}
+              onClick={this.handlePodcastToView.bind(this, p)}
+            >
+              <span id="info-icon">🛈</span>
+            </button>
+            ---
             <button
               type="remove"
               value={p.id}
               onClick={this.handleDeletePodcast.bind(this, p)}> x</button>
-            -------------
+            -----------
           </div>
         </div>)
       return (

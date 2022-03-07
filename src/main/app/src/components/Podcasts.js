@@ -86,6 +86,7 @@ class Podcasts extends Component {
           <h5> playlist </h5>
           <Playlist
             playlist={playlist}
+            viewDetailsCB={this.handleViewDetailsCB}
             deletePodcastCB={this.handleDeletePodcastCB} />
         </div>
       </div>
