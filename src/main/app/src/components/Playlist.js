@@ -17,33 +17,6 @@ class Playlist extends Component {
     this.props.deletePodcastCB(podcastToDelete.id)
   }
 
-  // async handleDeletePodcast(event) {
-  //   event.preventDefault();
-  //   try {
-  //     const res = await axios.delete(`/api/podcasts/${event.target.value}`);
-  //     const updatedPlaylist = this.state.playlist.filter(function (podcast) {
-  //       if (podcast.id === parseInt(event.target.value)) {
-  //         return false;
-  //       }
-  //       return true;
-  //     });
-  //     this.setState({ playlist: updatedPlaylist })
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
-
-
-
-  // async componentDidMount() {
-  //   try {
-  //     // console.log('inside comp mount')
-  //     const { data } = await axios.get('/api/podcasts')
-  //     this.setState({ playlist: data });
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   render() {
     const { playlist } = this.props
