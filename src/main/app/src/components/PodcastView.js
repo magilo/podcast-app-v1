@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-
-//results component should pass back the selected podcast (to display)
-//can also add to playlist
+//refactor to stateless component
 class PodcastView extends Component {
   constructor(props) {
     super(props)
@@ -10,26 +8,6 @@ class PodcastView extends Component {
       podcastDetails: this.props.podcastDetails
     }
   }
-
-  // refactor this later
-  // move podcastDetails to state in Podcasts then pass it to PodcastView as a prop
-  componentDidUpdate(prevProps) {
-
-    if (Object.keys(this.props.podcastDetails).length > 0) {
-      if (Object.keys(prevProps.podcastDetails).length === 0) {
-        //if it's the first selection
-        this.setState({ podcastDetails: this.props.podcastDetails })
-      } else if (prevProps.podcastDetails.id !== this.props.podcastDetails.id) {
-        //if it's a different selection
-        this.setState({ podcastDetails: this.props.podcastDetails })
-      }
-    }
-    // if (this.props.podcastDetails !== prevProps.podcastDetails) {
-    //   console.log('inside podcastview', this.props)
-
-    // }
-  }
-
 
   render() {
     // console.log('this view', this.props)
@@ -68,20 +46,3 @@ class PodcastView extends Component {
 export default PodcastView;
 
 
-// //stateless component
-// function PodcastView(props) {
-//   console.log('props', props);
-
-//   useEffect(() => {
-
-//   })
-
-//   return (
-
-//     < div >
-//       <h5>details</h5>
-//     </div >
-//   )
-// }
-
-// export default PodcastView
