@@ -17,47 +17,33 @@ class Playlist extends Component {
     this.props.deletePodcastCB(podcastToDelete.id)
   }
 
-  // async handleDeletePodcast(event) {
-  //   event.preventDefault();
-  //   try {
-  //     const res = await axios.delete(`/api/podcasts/${event.target.value}`);
-  //     const updatedPlaylist = this.state.playlist.filter(function (podcast) {
-  //       if (podcast.id === parseInt(event.target.value)) {
-  //         return false;
-  //       }
-  //       return true;
-  //     });
-  //     this.setState({ playlist: updatedPlaylist })
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
+  handlePodcastToView(podcastData, event) {
+    event.preventDefault()
+    this.props.viewDetailsCB(podcastData)
+  }
 
-
-
-  // async componentDidMount() {
-  //   try {
-  //     // console.log('inside comp mount')
-  //     const { data } = await axios.get('/api/podcasts')
-  //     this.setState({ playlist: data });
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
   render() {
     const { playlist } = this.props
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
-          <span > {p.name} {p.title}  </span>
+          <span > {p.title} --- {p.name}   </span>
           <div>
-            -------------
+            -----------
+            <button
+              value={p.id}
+              // disabled={movieExists(res.imdbID, nominees)}
+              onClick={this.handlePodcastToView.bind(this, p)}
+            >
+              <span id="info-icon">🛈</span>
+            </button>
+            ---
             <button
               type="remove"
               value={p.id}
               onClick={this.handleDeletePodcast.bind(this, p)}> x</button>
-            -------------
+            -----------
           </div>
         </div>)
       return (
