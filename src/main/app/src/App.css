@@ -41,6 +41,7 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 4px;
+  height: max-content;
 }
 
 .App-podcast-view {
@@ -65,6 +66,7 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 4px;
+  height: max-content;
 }
 
 .App-link {
@@ -94,6 +96,14 @@
 #picture{
   max-width: 100%;
   max-height: 100%;
+}
+
+#result-element{
+  padding: 6px;
+}
+
+.podcast{
+  padding: 6px;
 }
 
 #add-icon{

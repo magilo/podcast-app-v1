@@ -51,10 +51,14 @@ class Playlist extends Component {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
           <span > {p.name} {p.title}  </span>
-          <button
-            type="remove"
-            value={p.id}
-            onClick={this.handleDeletePodcast.bind(this, p)}> x</button>
+          <div>
+            -------------
+            <button
+              type="remove"
+              value={p.id}
+              onClick={this.handleDeletePodcast.bind(this, p)}> x</button>
+            -------------
+          </div>
         </div>)
       return (
         <div>
