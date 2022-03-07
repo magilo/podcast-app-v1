@@ -11,6 +11,8 @@ class PodcastView extends Component {
     }
   }
 
+  // refactor this later
+  // move podcastDetails to state in Podcasts then pass it to PodcastView as a prop
   componentDidUpdate(prevProps) {
 
     if (Object.keys(this.props.podcastDetails).length > 0) {
@@ -32,6 +34,7 @@ class PodcastView extends Component {
   render() {
     // console.log('this view', this.props)
     const { podcastDetails } = this.props
+
     if (Object.keys(podcastDetails).length === 0) {
       return (
         < div >
@@ -44,11 +47,17 @@ class PodcastView extends Component {
         < div >
           < div > {podcastDetails.title}</div>
           <img id="picture" src={podcastDetails.image} alt={podcastDetails.id} />
-          < p >{podcastDetails.name}</p>
+          <figure>
+            <figcaption>{podcastDetails.name}</figcaption>
+            <audio
+              controls
+              src={podcastDetails.audio}>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </figure>
           < div >{podcastDetails.description}</div>
-
           <div>likes dislikes </div>
-          <div> play/pause</div>
         </div >
       )
 
