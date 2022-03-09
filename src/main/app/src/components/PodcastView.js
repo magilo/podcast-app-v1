@@ -34,7 +34,7 @@ class PodcastView extends Component {
             </audio>
           </figure>
           < div >{podcastDetails.description}</div>
-          <div>likes dislikes </div>
+          <p>likes: 0 dislikes: 0 </p>
         </div >
       )
 
