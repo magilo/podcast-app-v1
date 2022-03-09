@@ -15,13 +15,11 @@ class SearchBy extends Component {
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption })
-    // console.log('selected', selectedOption);
     this.props.titleOrNameCB(selectedOption.value);
   }
 
 
   render() {
-    // console.log(this.props);
     const { selectedOption } = this.state;
 
     return (

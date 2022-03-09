@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Search, PodcastView, Playlist } from './index'
+import { Search, PodcastView, Playlist, SortBy } from './index'
 import axios from 'axios';
 
 /*** top level component ***/
@@ -14,27 +14,18 @@ class Podcasts extends Component {
     this.handleViewDetailsCB = this.handleViewDetailsCB.bind(this)
     this.handleAddPodcastCB = this.handleAddPodcastCB.bind(this)
     this.handleDeletePodcastCB = this.handleDeletePodcastCB.bind(this)
+    this.handleSortByCB = this.handleSortByCB.bind(this)
   }
 
   handleViewDetailsCB = (childData) => {
-    //display podcast to user
-    // console.log('viewDetailsCB', childData)
-    this.setState({ podcastDetails: childData }, function () {
-
-      // console.log("handleView", this.state.podcastDetails)
-    })
+    this.setState({ podcastDetails: childData })
   }
 
   handleAddPodcastCB = async (childData) => {
-
-    // this.setState({ podcastToAdd: childData })
     try {
-      // console.log('inside comp mount')
       const res = await axios.post('/api/podcasts', childData)
-      // this.setState({ playlist: data });
       if (res.status === 201) {
         const { data } = await axios.get('/api/podcasts')
-        // console.log(data)
         this.setState({ playlist: data });
       }
     } catch (err) {
@@ -43,13 +34,10 @@ class Podcasts extends Component {
   }
 
   handleDeletePodcastCB = async (childData) => {
-    console.log('delete podcastcb', childData)
     try {
       const res = await axios.delete(`/api/podcasts/${childData}`);
-      // console.log('delete', res)
       if (res.status === 204) {
         const { data } = await axios.get('/api/podcasts')
-        // console.log(data)
         this.setState({ playlist: data });
       }
     } catch (err) {
@@ -57,9 +45,23 @@ class Podcasts extends Component {
     }
   }
 
+  handleSortByCB = async (childSort, childOrder) => {
+    console.log('from child', childSort, childOrder)
+    try {
+      const res = await axios.get(`/api/podcasts?sort=${childSort}&order=${childOrder}`);
+      console.log('res', res)
+      if (res.status === 200) {
+        this.setState({ playlist: res.data });
+      }
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
+
   async componentDidMount() {
     try {
-      // console.log('inside comp mount')
       const { data } = await axios.get('/api/podcasts')
       this.setState({ playlist: data });
     } catch (err) {
@@ -83,7 +85,8 @@ class Podcasts extends Component {
         </div>
 
         <div className="App-playlist">
-          <h5> playlist </h5>
+          <h4> playlist </h4>
+          <div><SortBy sortByCB={this.handleSortByCB} /></div>
           <Playlist
             playlist={playlist}
             viewDetailsCB={this.handleViewDetailsCB}

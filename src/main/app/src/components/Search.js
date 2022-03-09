@@ -17,40 +17,32 @@ class Search extends Component {
   }
 
   handleSearchSubmitCB = async (childData) => {
-    // console.log("search bar", childData, this.state.searchByParams);
     this.setState({ userReqParams: childData })
     try {
-      // "api/samplelist/search?title=bleh"
       const { data } = await axios.get(`api/samplelist/search?${this.state.searchByParams}=${childData}`)
       this.setState({ results: data })
-      // console.log('search', this.state);
     } catch (err) {
       console.log(err)
     }
   }
 
   handleTitleOrNameCB = (childData) => {
-    // console.log('search TitleOrNameCB', childData)
     this.setState({ searchByParams: childData })
   }
 
   handleResultSubmitCB = (childData) => {
-    //display podcast to user
-    // console.log('result submit', childData)
-    //pass to top level
+    //pass data from Results to top level
     this.props.viewDetailsCB(childData)
   }
 
   handleResultAddPodcastCB = (childData) => {
-    //pass to top level
-    // console.log('resultadd', childData)
+    //pass data from Results to top level
     this.props.addPodcastCB(childData)
   }
 
 
   render() {
     const { results } = this.state
-    // console.log('this.state', this.state);
     return (
       <div>
         <div><SearchBy titleOrNameCB={this.handleTitleOrNameCB} /></div>

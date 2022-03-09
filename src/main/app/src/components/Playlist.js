@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 //this can be a functional component
 
@@ -21,6 +20,8 @@ class Playlist extends Component {
     event.preventDefault()
     this.props.viewDetailsCB(podcastData)
   }
+
+
 
 
   render() {

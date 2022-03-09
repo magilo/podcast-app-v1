@@ -10,7 +10,6 @@ class PodcastView extends Component {
   }
 
   render() {
-    // console.log('this view', this.props)
     const { podcastDetails } = this.props
 
     if (Object.keys(podcastDetails).length === 0) {
