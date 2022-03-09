@@ -19,7 +19,9 @@ class Search extends Component {
   handleSearchSubmitCB = async (childData) => {
     this.setState({ userReqParams: childData })
     try {
-      const { data } = await axios.get(`api/samplelist/search?${this.state.searchByParams}=${childData}`)
+      // const { data } = await axios.get(`api/samplelist/search?${this.state.searchByParams}=${childData}`)
+      const { data } = await axios.get(`api/podcasts/search?${this.state.searchByParams}=${childData}`)
+      console.log(this.state.searchByParams, childData);
       this.setState({ results: data })
     } catch (err) {
       console.log(err)

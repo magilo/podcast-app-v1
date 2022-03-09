@@ -3,14 +3,14 @@ import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 
 const options = [
-  { value: 'name', label: 'name' },
+  { value: 'author', label: 'author' },
   { value: 'title', label: 'title' }
 ]
 
 
 class SearchBy extends Component {
   state = {
-    selectedOption: { value: 'search by', label: 'search by...' }
+    selectedOption: { value: null, label: 'search by...' }
   }
 
   handleChange = (selectedOption) => {
