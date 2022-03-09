@@ -7,8 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-@Entity // JPA annotation denotes the whole class for storage in a relational table
+@Entity
 @Table(name = "likesdislikes")
 public class LikesDislikes {
 
@@ -19,43 +18,50 @@ public class LikesDislikes {
   private int likes;
   @Column(name = "dislikes")
   private int dislikes;
-  @Column(name = "apiId")
-  private String apiId;
-
+  // @Column(name = "apiId")
+  // private String apiId;
+  @Column(name = "title")
+  private String title;
 
   public LikesDislikes() {
   }
 
-  public LikesDislikes(int likes, int dislikes, String apiId) {
+  public LikesDislikes(int likes, int dislikes, String title) {
     this.likes = likes;
     this.dislikes = dislikes;
-    this.apiId = apiId;
+    this.title = title;
   }
 
   public long getId() {
     return id;
   }
+
   public void setId(long id) {
     this.id = id;
   }
+
   public int getLikes() {
     return likes;
   }
+
   public void setLikes(int likes) {
     this.likes = likes;
   }
+
   public int getDislikes() {
     return dislikes;
   }
+
   public void setDislikes(int dislikes) {
     this.dislikes = dislikes;
   }
-  public String getApiId() {
-    return apiId;
+
+  public String getTitle() {
+    return title;
   }
-  public void setApiId(String apiId) {
-    this.apiId = apiId;
+
+  public void setTitle(String title) {
+    this.title = title;
   }
 
 }
-
