@@ -13,4 +13,5 @@ export { default as Playlist } from './Playlist';
 export { default as Podcasts } from './Podcasts';
 export { default as SearchBy } from './SearchBy';
 export { default as PodcastView } from './PodcastView';
+export { default as SortBy } from './SortBy';
 

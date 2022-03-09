@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { SortBy } from './index'
 
 //this can be a functional component
 
@@ -21,6 +22,8 @@ class Playlist extends Component {
     event.preventDefault()
     this.props.viewDetailsCB(podcastData)
   }
+
+
 
 
   render() {
@@ -48,12 +51,14 @@ class Playlist extends Component {
         </div>)
       return (
         <div>
+          {/* <div><SortBy /></div> */}
           {listItems}
         </div>
       )
     } else {
       return (
         <div>
+          {/* <div><SortBy /></div> */}
           nothing on playlist
         </div>
       )

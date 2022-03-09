@@ -51,7 +51,7 @@ public class PodcastController {
       // List<Podcast> podcasts = podcastRepository.findAll();
 
       List<Podcast> podcasts = new ArrayList<Podcast>();
-      System.out.println(sort + " " + order);
+      System.out.println("inside get " + sort + " | " + order);
       if (sort == null || order == null) {
         podcasts = podcastRepository.findAll();
       } else if (sort.equals("title") && order.equals("asc")) {
