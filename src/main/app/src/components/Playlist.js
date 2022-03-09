@@ -29,7 +29,8 @@ class Playlist extends Component {
     if (playlist.length > 0) {
       const listItems = playlist.map((p) =>
         <div className="podcast" key={p.id}>
-          <span > {p.title} --- {p.name}   </span>
+          <div > {p.title}    </div>
+          <div>*** {p.name} ***</div>
           <div>
             -----------
             <button
