@@ -31,8 +31,9 @@ class Results extends Component {
     if (searchResults.length > 0) {
 
       const listItems = searchResults.map((res) =>
-        <div key={res.id}>
-          {res.title}
+        <div key={res.title}>
+          <div>{res.title}</div>
+          <div>*** {res.name} *** </div>
           <div id="result-element">
             -----------
             <button
@@ -64,7 +65,7 @@ class Results extends Component {
     } else {
       return (
         <div>
-          <h4>enter title/name in search</h4>
+          <h4>enter title/author in search</h4>
         </div>
       )
 
