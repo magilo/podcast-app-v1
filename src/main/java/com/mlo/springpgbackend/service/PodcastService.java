@@ -76,7 +76,6 @@ public class PodcastService {
     List<Podcast> results = new ArrayList<Podcast>();
     String API_KEY = System.getenv("API_KEY");
     // System.out.println("API_KEY " + API_KEY);
-    Secrets2.printProperties();
     try {
       Client objClient = new Client(API_KEY);
       HashMap<String, String> parameters = new HashMap<>();
