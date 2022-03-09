@@ -74,8 +74,9 @@ public class PodcastService {
   public List<Podcast> getApiData(String userReqParams, String selectedOption) {
 
     List<Podcast> results = new ArrayList<Podcast>();
+    String API_KEY = Secrets2.getAPI_KEY();
     try {
-      Client objClient = new Client("");
+      Client objClient = new Client(API_KEY);
       HashMap<String, String> parameters = new HashMap<>();
       parameters.put("q", userReqParams);
       // parameters.put("type", "episode");
