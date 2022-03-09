@@ -18,24 +18,14 @@ class Podcasts extends Component {
   }
 
   handleViewDetailsCB = (childData) => {
-    //display podcast to user
-    // console.log('viewDetailsCB', childData)
-    this.setState({ podcastDetails: childData }, function () {
-
-      // console.log("handleView", this.state.podcastDetails)
-    })
+    this.setState({ podcastDetails: childData })
   }
 
   handleAddPodcastCB = async (childData) => {
-
-    // this.setState({ podcastToAdd: childData })
     try {
-      // console.log('inside comp mount')
       const res = await axios.post('/api/podcasts', childData)
-      // this.setState({ playlist: data });
       if (res.status === 201) {
         const { data } = await axios.get('/api/podcasts')
-        // console.log(data)
         this.setState({ playlist: data });
       }
     } catch (err) {
@@ -44,13 +34,10 @@ class Podcasts extends Component {
   }
 
   handleDeletePodcastCB = async (childData) => {
-    // console.log('delete podcastcb', childData)
     try {
       const res = await axios.delete(`/api/podcasts/${childData}`);
-      // console.log('delete', res)
       if (res.status === 204) {
         const { data } = await axios.get('/api/podcasts')
-        // console.log(data)
         this.setState({ playlist: data });
       }
     } catch (err) {
@@ -72,15 +59,9 @@ class Podcasts extends Component {
 
   }
 
-  // handleOrderBy(orderInput, event) {
-  //   event.preventDefault()
-  //   console.log(orderInput)
-  // }
-
 
   async componentDidMount() {
     try {
-      // console.log('inside comp mount')
       const { data } = await axios.get('/api/podcasts')
       this.setState({ playlist: data });
     } catch (err) {

@@ -20,23 +20,23 @@ class SortBy extends Component {
   }
 
   handleChangeSort = (selectedSortOption) => {
-    this.setState({ selectedSortOption })
-    this.props.sortByCB(selectedSortOption.value, this.state.selectedOrderOption.value)
-    // console.log('selected', selectedOption);
-    // this.props.titleOrNameCB(selectedSortOption.value);
+    //why does this not use event variable?
+    this.setState({ selectedSortOption }, function () {
+      this.props.sortByCB(selectedSortOption.value, this.state.selectedOrderOption.value)
+    })
+
   }
+
   handleChangeOrder = (selectedOrderOption) => {
-    // console.log('event', selectedOrderOption)
-    this.setState({ selectedOrderOption })
-    // console.log('selected', selectedOption);
-    // this.props.titleOrNameCB(selectedOption.value);
-    this.props.sortByCB(this.state.selectedSortOption.value, selectedOrderOption.value)
+    this.setState({ selectedOrderOption }, function () {
+      this.props.sortByCB(this.state.selectedSortOption.value, selectedOrderOption.value)
+    })
+
   }
 
 
 
   render() {
-    // console.log(this.props);
     const { selectedSortOption, selectedOrderOption } = this.state;
 
     return (

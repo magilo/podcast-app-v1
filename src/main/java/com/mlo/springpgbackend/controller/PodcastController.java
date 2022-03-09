@@ -1,13 +1,11 @@
 package com.mlo.springpgbackend.controller;
 
 import java.util.ArrayList;
-// import java.util.ArrayList;
 import java.util.List;
 
 import com.mlo.springpgbackend.model.Podcast;
 import com.mlo.springpgbackend.repository.PodcastRepository;
 
-import org.hibernate.annotations.Sort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -76,7 +74,6 @@ public class PodcastController {
 
   @PostMapping("/podcasts")
   public ResponseEntity<Podcast> addPodcast(@RequestBody Podcast podcast) {
-    // System.out.println("hellooooo" + podcast);
     try {
       Podcast newPodcast = podcastRepository.save(podcast);
       return new ResponseEntity<>(newPodcast, HttpStatus.CREATED);

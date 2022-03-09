@@ -16,16 +16,17 @@ class Results extends Component {
 
   handleResultSubmit(podcastData, event) {
     event.preventDefault()
+    //pass data to Search component
     this.props.resultSubmitCB(podcastData)
   }
 
   handleResultAddPodcast(podcastData, event) {
     event.preventDefault()
+    //pass data to Search component
     this.props.resultAddPodcastCB(podcastData)
   }
 
   render() {
-    // console.log('inside result', this.props.searchResults)
     const { searchResults } = this.props
     if (searchResults.length > 0) {
 
