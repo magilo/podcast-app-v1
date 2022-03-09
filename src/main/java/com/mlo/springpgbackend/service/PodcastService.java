@@ -74,7 +74,12 @@ public class PodcastService {
   public List<Podcast> getApiData(String userReqParams, String selectedOption) {
 
     List<Podcast> results = new ArrayList<Podcast>();
+
+    // for heroku
     String API_KEY = System.getenv("API_KEY");
+    if (API_KEY == null) {
+      API_KEY = Secrets2.getAPI_KEY();
+    }
     // System.out.println("API_KEY " + API_KEY);
     try {
       Client objClient = new Client(API_KEY);
