@@ -76,7 +76,7 @@ public class SearchController {
         // JsonArray matchingName = podcastService.searchByName(author);
 
         List<Podcast> searchForName = podcastService.getApiData(author, "author");
-        System.out.println("searchName " + searchForName);
+        // System.out.println("searchName " + searchForName);
         return new ResponseEntity<>(searchForName, HttpStatus.OK);
       }
 
