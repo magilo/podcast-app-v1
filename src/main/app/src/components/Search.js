@@ -42,6 +42,16 @@ class Search extends Component {
     this.props.addPodcastCB(childData)
   }
 
+  //add this as initial search data?
+  // async componentDidMount() {
+  //   try {
+  //     const { data } = await axios.get('/api/samplelist')
+  //     this.setState({ results: data });
+  //   } catch (err) {
+  //     console.log(err)
+  //   }
+  // }
+
 
   render() {
     const { results } = this.state
