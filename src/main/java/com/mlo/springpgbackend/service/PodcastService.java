@@ -93,6 +93,7 @@ public class PodcastService {
       JsonElement dataElement = JsonParser.parseString(response.toJSON().toString());
       JsonObject dataObj = dataElement.getAsJsonObject();
       JsonArray dataArray = dataObj.get("results").getAsJsonArray();
+      // System.out.println(dataArray);
 
       for (JsonElement da : dataArray) {
         JsonObject episodeObj = da.getAsJsonObject();
@@ -102,6 +103,7 @@ public class PodcastService {
 
         String description = episodeObj.get("description_highlighted").getAsString();
 
+        // there is an issue if any values are null
         String source = episodeObj.get("link").getAsString();
 
         String audio = episodeObj.get("audio").getAsString();
