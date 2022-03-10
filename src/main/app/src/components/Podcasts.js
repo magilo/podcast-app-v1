@@ -15,6 +15,7 @@ class Podcasts extends Component {
     this.handleAddPodcastCB = this.handleAddPodcastCB.bind(this)
     this.handleDeletePodcastCB = this.handleDeletePodcastCB.bind(this)
     this.handleSortByCB = this.handleSortByCB.bind(this)
+    this.handleLikePodcastCB = this.handleLikePodcastCB.bind(this)
   }
 
   handleViewDetailsCB = (childData) => {
@@ -49,18 +50,31 @@ class Podcasts extends Component {
   }
 
   handleSortByCB = async (childSort, childOrder) => {
-    console.log('from child', childSort, childOrder)
+    // console.log('from child', childSort, childOrder)
     //receives child data from Playlist
     try {
       const res = await axios.get(`/api/podcasts?sort=${childSort}&order=${childOrder}`);
-      console.log('res', res)
+
       if (res.status === 200) {
         this.setState({ playlist: res.data });
       }
     } catch (err) {
       console.log(err)
     }
+  }
 
+  handleLikePodcastCB = async (childData) => {
+    console.log("handlike", childData)
+    //receives id child data from PodcastView
+    try {
+      const res = await axios.put(`api/podcasts/${childData}/like`)
+      console.log('res', res)
+      if (res.status === 200) {
+        this.setState({ podcastDetails: res.data })
+      }
+    } catch (err) {
+      console.log(err)
+    }
   }
 
 
@@ -74,7 +88,7 @@ class Podcasts extends Component {
   }
 
   render() {
-    const { podcastDetails, playlist } = this.state
+    const { podcastDetails, playlist, podcastLikeCounter } = this.state
     return (
       <div className="App-body">
         <div className="App-search">
@@ -85,7 +99,8 @@ class Podcasts extends Component {
 
         <div className="App-podcast-view">
           <PodcastView
-            podcastDetails={podcastDetails} />
+            podcastDetails={podcastDetails}
+            likePodcastCB={this.handleLikePodcastCB} />
         </div>
 
         <div className="App-playlist">

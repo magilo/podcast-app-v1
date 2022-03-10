@@ -16,4 +16,6 @@ public interface PodcastRepository extends JpaRepository<Podcast, Long> {
 
   public List<Podcast> findAllByOrderByNameDesc();
 
+  public List<Podcast> findAllByOrderByIdAsc();
+
 }

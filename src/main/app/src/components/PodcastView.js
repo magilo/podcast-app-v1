@@ -9,8 +9,17 @@ class PodcastView extends Component {
     }
   }
 
+
+  handleLikeAPodcast(podcastToLike, event) {
+    console.log('event', event)
+    event.preventDefault()
+    //pass back to Podcasts
+    this.props.likePodcastCB(podcastToLike.id)
+  }
+
   render() {
     const { podcastDetails } = this.props
+    console.log(podcastDetails)
 
     if (Object.keys(podcastDetails).length === 0) {
       return (
@@ -34,7 +43,11 @@ class PodcastView extends Component {
             </audio>
           </figure>
           < div >{podcastDetails.description}</div>
-          <p>likes: 0 dislikes: 0 </p>
+          <p>likes: {podcastDetails.likes} dislikes: 0 </p>
+          <button
+            type="counter"
+            value={podcastDetails.id}
+            onClick={this.handleLikeAPodcast.bind(this, podcastDetails)}> like</button>
         </div >
       )
 

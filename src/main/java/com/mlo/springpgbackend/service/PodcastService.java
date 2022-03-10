@@ -56,17 +56,16 @@ public class PodcastService {
     return sampleList;
   }
 
+  // this method is mock up for sample list data
   public JsonArray searchByName(String name) {
     JsonObject allData = getInitialData();
-    // List<JsonObject> matching = new ArrayList<JsonObject>();
     JsonArray matching = allData.getAsJsonArray("podcasts");
     return matching;
-
   }
 
+  // this method is mock up for sample list data
   public JsonArray searchByTitle(String title) {
     JsonObject allData = getInitialData();
-    // List<JsonObject> matching = new ArrayList<JsonObject>();
     JsonArray matching = allData.getAsJsonArray("podcasts");
     return matching;
   }
@@ -113,7 +112,6 @@ public class PodcastService {
 
         results.add(parsedPodcast);
       }
-      // System.out.println(results);
       return results;
 
     } catch (ListenApiException e) {

@@ -2,6 +2,7 @@ package com.mlo.springpgbackend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.mlo.springpgbackend.model.Podcast;
 import com.mlo.springpgbackend.repository.PodcastRepository;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,31 +29,15 @@ public class PodcastController {
   @Autowired
   PodcastRepository podcastRepository;
 
-  @GetMapping("/test")
-  String home() {
-    try {
-      Podcast newPodcast = podcastRepository.save(new Podcast());
-      ResponseEntity<Podcast> entity = new ResponseEntity<>(newPodcast, HttpStatus.CREATED);
-      System.out.println(entity.toString());
-      return "test done";
-    } catch (Exception e) {
-      e.printStackTrace();
-      // return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-    return "Hello World!";
-  }
-
   @GetMapping("/podcasts")
   public ResponseEntity<List<Podcast>> getAllpodcasts(
       @RequestParam(required = false) String sort,
       @RequestParam(required = false) String order) {
     try {
-      // List<Podcast> podcasts = podcastRepository.findAll();
-
       List<Podcast> podcasts = new ArrayList<Podcast>();
       System.out.println("inside get " + sort + " | " + order);
       if (sort == null || order == null) {
-        podcasts = podcastRepository.findAll();
+        podcasts = podcastRepository.findAllByOrderByIdAsc();
       } else if (sort.equals("title") && order.equals("asc")) {
         podcasts = podcastRepository.findAllByOrderByTitleAsc();
         System.out.println("title asc");
@@ -62,7 +48,6 @@ public class PodcastController {
       } else if (sort.equals("author") && order.equals("desc")) {
         podcasts = podcastRepository.findAllByOrderByNameDesc();
       }
-
       if (podcasts.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
@@ -100,6 +85,25 @@ public class PodcastController {
       return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/podcasts/{id}/like")
+  public ResponseEntity<Podcast> likeAPodcast(@PathVariable("id") long id) {
+    try {
+      Optional<Podcast> podcast = podcastRepository.findById(id);
+      if (podcast.isPresent()) {
+        Podcast podcastData = podcastRepository.getById(id);
+        System.out.println(podcastData);
+        podcastData.setLikes(podcastData.getLikes() + 1);
+        podcastRepository.save(podcastData);
+        return new ResponseEntity<>(podcastData, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
