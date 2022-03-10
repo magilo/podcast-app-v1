@@ -10,13 +10,28 @@ A podcast player where you can save pocasts to your playlist and search podcasts
 
 ## Architectural Requirements
 ### Features
-- at least three ways the user can interact
+- User can search for a list of podcasts by title or author
+- User can view details of a podcast
+- User can play/pause a podcast
+- User can save a podcast to their current playlist
+- User can sort their playlist by title or author
+
 ### Architectural Pattern
 MVC for overall app.
+
 MVP for React
 
 ### Backend Service
 need to integrate postman route examples
+
+The backend service is created via Spring Boot with JPA and PostgreSQL.
+The service is saved in the `src/main/java/com/mlo/springpgbackend` folder.
+The API has separate controllers for search routes and podcast routes that interact with the database. See views for more details on how the client interacts with the API.
+There are CRUD operations to interact with the database such as:
+- adding a podcast
+- getting a list of podcasts
+- deleting a podcast by id
+- updating the like counter <<< addd thissss before submit
 
 ### 3rd Party RESTful API
 [Listen Notes](https://www.listennotes.com/api/docs/)
