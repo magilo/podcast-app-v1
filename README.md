@@ -15,34 +15,33 @@ This project was created as an exercise to learn Java and build a fullstack appl
 
 ## Setup
 #### Setup for project on local environment:
-- You will need `node` and `npm` installed globally on your machine.
-- Git fork this repository into your desired directory. [[forking guide]](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-
-#### Install dependencies:
+- Git clone this repository into your desired directory
 ```sh
-npm install
+git clone git@github.com:magilo/podcast-app-v1.git
 ```
 
-#### Start local server:
+#### Setup database:
+- You will need to have PostgreSQL installed and running.
+- Create database for project on command line:
 ```sh
-npm start
+createdb  springboot-podcastsdb
 ```
-- Open `http://localhost:3000/api-docs/#/` in your browser to access api docs.
-- Nodemon will watch for any changes in the files
 
+#### API Key:
+- To use search functionality, you will need an Listen Notes API key.
+Get it here: https://www.listennotes.com/api/
+- Here is a [tutorial](https://harith-sankalpa.medium.com/think-twice-before-adding-plain-text-passwords-to-your-code-5587af5ca998) on how to load the key into your system environment variables.
 
-#### Run tests:
+#### Run project and start local server:
 ```sh
-npm test
+./mvnw spring-boot:run
 ```
-- Jest will watch for any changes in the files
+- Open `http://localhost:8080/` in your browser.
+- `spring-boot-devtools` plugin will watch for any changes in the files
 
 
 #### Notes:
-- Make sure your Node version is at least version 14.
-- Please note swagger-jsdoc is using v6.0.0 in this project. Other versions are not guaranteed to work.
-
-get your own api key
+- The React app can be run on it's own by going into the `src/main/app` and running `npm start`.
 
 
 ## Architectural Overview
@@ -130,6 +129,7 @@ review concepts
 ## Project Preview (video)
 
 ## Screenshots for each view and
+## Views and Overall User Flow
 - descriptions for the overall user flow
 - anywhere you made distinct design decisions
 My application view is divided into three main view sections: search for podcasts, view selected podcast and current playlist.
@@ -161,6 +161,21 @@ Info button - triggers a callback function to send the selected podcasts's data 
 
 
 
-## Room for Improvement
+<!-- ## Room for Improvement -->
 
 ## Acknowledgements
+[CRUD API using Spring Boot :Part 1 (without DB)](https://medium.com/analytics-vidhya/crud-using-spring-boot-part-1-without-db-385a48e8578b)
+
+[Getting JSON Data From a RESTful API Using JAVA](https://medium.com/swlh/getting-json-data-from-a-restful-api-using-java-b327aafb3751)
+
+[Spring Boot, JPA/Hibernate, PostgreSQL example with Maven](https://www.bezkoder.com/spring-boot-postgresql-example/)
+
+[Run React and SpringBoot on the same port and Package them as a single artifact !!](https://medium.com/codex/run-react-frontend-and-springboot-backend-on-the-same-port-and-package-them-as-a-single-artifact-a790c9e10ac1)
+
+[Including React in your Spring Boot maven build](https://medium.com/@itzgeoff/including-react-in-your-spring-boot-maven-build-ae3b8f8826e)
+
+[React.js and Spring Data REST](https://spring.io/guides/tutorials/react-and-spring-data-rest/)
+
+[How To Provide Secrets To A Java Or Node Application](https://harith-sankalpa.medium.com/think-twice-before-adding-plain-text-passwords-to-your-code-5587af5ca998)
+
+[Accessing config var values from code](https://devcenter.heroku.com/articles/config-vars#accessing-config-var-values-from-code)
