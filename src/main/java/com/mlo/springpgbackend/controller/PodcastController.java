@@ -2,6 +2,7 @@ package com.mlo.springpgbackend.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import com.mlo.springpgbackend.model.Podcast;
 import com.mlo.springpgbackend.repository.PodcastRepository;
@@ -12,8 +13,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -100,6 +103,25 @@ public class PodcastController {
       return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
     } catch (Exception e) {
       return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  @PutMapping("/podcasts/{id}/like")
+  public ResponseEntity<Podcast> likeAPodcast(@PathVariable("id") long id) {
+    try {
+      Optional<Podcast> podcast = podcastRepository.findById(id);
+      if (podcast.isPresent()) {
+        Podcast podcastData = podcastRepository.getById(id);
+        System.out.println(podcastData);
+        podcastData.setLikes(podcastData.getLikes() + 1);
+        podcastRepository.save(podcastData);
+        return new ResponseEntity<>(podcastData, HttpStatus.OK);
+      } else {
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
