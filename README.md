@@ -127,11 +127,16 @@ There are CRUD operations to interact with the database such as:
 [Listen Notes](https://www.listennotes.com/api/docs/)
 
 ### Object Oriented Principles
-review concepts
+#### Polymorphism
+My application uses the principle of polymorphism when the PodcastRepository extends from the JpaRepository interface. The class inherited methods from JpaRepository along with defining it's own unique search methods for sorting findAll() queries.
+#### Inheritance
+Many of the React class components extends from React.Components. Logic is passed down from the Componenets class lets me start with a template to create a more specialized subclass.
+#### Encapsulation
+The data model class Podcast uses the principle of encapsulation because the state of the object cannot be changed directly. Other classes have to use getter or setter methods in order to communicate with the Podcast object.
+
 
 <!-- ## Project Preview (video) -->
 
-## Screenshots for each view and
 ## Views and Overall User Flow
 - descriptions for the overall user flow
 - anywhere you made distinct design decisions
