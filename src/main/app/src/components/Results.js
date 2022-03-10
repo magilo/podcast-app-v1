@@ -27,7 +27,7 @@ class Results extends Component {
   }
 
   render() {
-    const { searchResults } = this.props
+    const { searchResults, userReqParams } = this.props
     if (searchResults.length > 0) {
 
       const listItems = searchResults.map((res) =>
@@ -55,7 +55,7 @@ class Results extends Component {
       );
       return (
         <div>
-          <h4>showing results</h4>
+          <h4>showing results "{userReqParams}"</h4>
           <div id="results-list">{listItems}</div>
         </div>
       );
