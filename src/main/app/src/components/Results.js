@@ -38,7 +38,6 @@ class Results extends Component {
             -----------
             <button
               value={res.title}
-              // disabled={movieExists(res.imdbID, nominees)}
               onClick={this.handleResultSubmit.bind(this, res)}
             >
               <span id="info-icon">🛈</span>
@@ -46,7 +45,6 @@ class Results extends Component {
             ---
             <button
               value={res.title}
-              // disabled={movieExists(res.imdbID, nominees)}
               onClick={this.handleResultAddPodcast.bind(this, res)}
             >
               <span id="add-icon">+</span>

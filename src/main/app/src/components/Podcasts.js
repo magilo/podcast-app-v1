@@ -18,10 +18,12 @@ class Podcasts extends Component {
   }
 
   handleViewDetailsCB = (childData) => {
+    //receives child data from Search or Playlist
     this.setState({ podcastDetails: childData })
   }
 
   handleAddPodcastCB = async (childData) => {
+    //receives child data from Search
     try {
       const res = await axios.post('/api/podcasts', childData)
       if (res.status === 201) {
@@ -34,6 +36,7 @@ class Podcasts extends Component {
   }
 
   handleDeletePodcastCB = async (childData) => {
+    //receives child data from Playlist
     try {
       const res = await axios.delete(`/api/podcasts/${childData}`);
       if (res.status === 204) {
@@ -47,6 +50,7 @@ class Podcasts extends Component {
 
   handleSortByCB = async (childSort, childOrder) => {
     console.log('from child', childSort, childOrder)
+    //receives child data from Playlist
     try {
       const res = await axios.get(`/api/podcasts?sort=${childSort}&order=${childOrder}`);
       console.log('res', res)

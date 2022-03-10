@@ -33,12 +33,12 @@ class Search extends Component {
   }
 
   handleResultSubmitCB = (childData) => {
-    //pass data from Results to top level
+    //pass data from Results to top level Podcasts
     this.props.viewDetailsCB(childData)
   }
 
   handleResultAddPodcastCB = (childData) => {
-    //pass data from Results to top level
+    //pass data from Results to top level Podcasts
     this.props.addPodcastCB(childData)
   }
 
