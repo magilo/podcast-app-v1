@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
-//results component should pass back the selected podcast (to display)
-//can also add to playlist
+// handles passing back selected podcast for viewing
+// handles passing back selected podcast for adding to playlist
 class Results extends Component {
   constructor(props) {
     super(props)

@@ -24,41 +24,6 @@ public class SearchController {
   @Autowired
   private PodcastService podcastService;
 
-  @GetMapping("/samplelist")
-  public ResponseEntity<JsonObject> getAllData() {
-    try {
-      JsonObject sampleList = podcastService.getInitialData();
-      return new ResponseEntity<>(sampleList, HttpStatus.OK);
-    } catch (Exception e) {
-      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-  }
-
-  @GetMapping("samplelist/search")
-  public ResponseEntity<JsonArray> searchSampleList(
-      @RequestParam(required = false) String name,
-      @RequestParam(required = false) String title) {
-    try {
-      if (name != null) {
-        System.out.println("title " + title);
-        System.out.println("name " + name);
-        JsonArray matchingName = podcastService.searchByName(name);
-        return new ResponseEntity<>(matchingName, HttpStatus.OK);
-      }
-
-      if (title != null) {
-        System.out.println("title " + title);
-        System.out.println("name " + name);
-        JsonArray matchingTitle = podcastService.searchByTitle(title);
-        return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
-      }
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
-
   @GetMapping("podcasts/search")
   public ResponseEntity<List<Podcast>> searchPodcasts(
       @RequestParam(required = false) String author,
@@ -71,6 +36,39 @@ public class SearchController {
 
       if (title != null) {
         List<Podcast> matchingTitle = podcastService.getApiData(title, "title");
+        return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
+      }
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  // original samplelist get function
+  @GetMapping("/samplelist")
+  public ResponseEntity<JsonObject> getAllData() {
+    try {
+      JsonObject sampleList = podcastService.getInitialData();
+      return new ResponseEntity<>(sampleList, HttpStatus.OK);
+    } catch (Exception e) {
+      return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  // mock up function for searching samplelist
+  @GetMapping("samplelist/search")
+  public ResponseEntity<JsonArray> searchSampleList(
+      @RequestParam(required = false) String name,
+      @RequestParam(required = false) String title) {
+    try {
+      if (name != null) {
+        JsonArray matchingName = podcastService.searchByName(name);
+        return new ResponseEntity<>(matchingName, HttpStatus.OK);
+      }
+
+      if (title != null) {
+        JsonArray matchingTitle = podcastService.searchByTitle(title);
         return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
       }
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);

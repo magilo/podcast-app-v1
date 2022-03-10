@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-//refactor to stateless component
+//refactor to functional component
 class PodcastView extends Component {
   constructor(props) {
     super(props)
