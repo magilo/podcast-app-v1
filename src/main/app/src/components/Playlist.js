@@ -35,7 +35,6 @@ class Playlist extends Component {
             -----------
             <button
               value={p.id}
-              // disabled={movieExists(res.imdbID, nominees)}
               onClick={this.handlePodcastToView.bind(this, p)}
             >
               <span id="info-icon">🛈</span>

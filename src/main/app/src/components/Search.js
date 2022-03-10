@@ -17,12 +17,12 @@ class Search extends Component {
   }
 
   handleSearchSubmitCB = async (childData) => {
-    this.setState({ userReqParams: childData })
+    // this.setState({ userReqParams: childData })
     try {
       // const { data } = await axios.get(`api/samplelist/search?${this.state.searchByParams}=${childData}`)
       const { data } = await axios.get(`api/podcasts/search?${this.state.searchByParams}=${childData}`)
       console.log(this.state.searchByParams, childData);
-      this.setState({ results: data })
+      this.setState({ userReqParams: childData, results: data })
     } catch (err) {
       console.log(err)
     }
@@ -33,12 +33,12 @@ class Search extends Component {
   }
 
   handleResultSubmitCB = (childData) => {
-    //pass data from Results to top level
+    //pass data from Results to top level Podcasts
     this.props.viewDetailsCB(childData)
   }
 
   handleResultAddPodcastCB = (childData) => {
-    //pass data from Results to top level
+    //pass data from Results to top level Podcasts
     this.props.addPodcastCB(childData)
   }
 
@@ -54,7 +54,7 @@ class Search extends Component {
 
 
   render() {
-    const { results } = this.state
+    const { results, userReqParams } = this.state
     return (
       <div>
         <div><SearchBy titleOrNameCB={this.handleTitleOrNameCB} /></div>
@@ -65,6 +65,7 @@ class Search extends Component {
         <div className="results">
           <Results
             searchResults={results}
+            userReqParams={userReqParams}
             resultSubmitCB={this.handleResultSubmitCB}
             resultAddPodcastCB={this.handleResultAddPodcastCB}
           />

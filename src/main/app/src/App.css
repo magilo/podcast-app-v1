@@ -45,7 +45,7 @@
 }
 
 .App-podcast-view {
-  height: 90vh;
+  min-height: 90vh;
   width: 50vh;
   border-radius: 6px;
   border-style: dotted;
@@ -54,6 +54,7 @@
   flex-direction: column;
   justify-content: space-around;
   margin: 4px;
+  height: max-content;
 }
 
 .App-playlist {
