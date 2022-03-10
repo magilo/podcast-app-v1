@@ -29,10 +29,10 @@ public class PodcastService {
       URL url = new URL(
           "https://gist.githubusercontent.com/CervantesVive/3f85bf26672cf27fe1cd932ffcb7ecac/raw/4de50b351a62158083a97f3b950bd786d3ffd928/awesome-podcasts.json");
 
-      // HttpURLConnection is a derived class of URLConnection
-      // with extra methods like setRequestMethod
-      // conn is should be renamed to request
+      // HttpURLConnection is a derived class of URLConnection with extra methods like
+      // setRequestMethod
       // connect to the URL using java's library
+      // maybe refactor this to use REST template class
       HttpURLConnection conn = (HttpURLConnection) url.openConnection();
       conn.setRequestMethod("GET");
       conn.connect();
@@ -78,18 +78,17 @@ public class PodcastService {
     String API_KEY = System.getenv("LISTEN_NOTES_API_KEY");
 
     try {
+      // Listen API's Java client
       Client objClient = new Client(API_KEY);
       HashMap<String, String> parameters = new HashMap<>();
       parameters.put("q", userReqParams);
-      // parameters.put("type", "episode");
       parameters.put("only_in", selectedOption);
       parameters.put("language", "English");
       ApiResponse response = objClient.search(parameters);
-      // System.out.println(response.toJSON().toString(2));
+
       JsonElement dataElement = JsonParser.parseString(response.toJSON().toString());
       JsonObject dataObj = dataElement.getAsJsonObject();
       JsonArray dataArray = dataObj.get("results").getAsJsonArray();
-      // System.out.println(dataArray);
 
       for (JsonElement da : dataArray) {
         JsonObject episodeObj = da.getAsJsonObject();
