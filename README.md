@@ -4,6 +4,9 @@ A podcast player where you can save pocasts to your playlist and search podcasts
 ## About
 
 ## Technologies Used
+- Java 11
+- PostgreSQL
+- React.js
 
 
 ## Architectural Overview
@@ -17,9 +20,20 @@ A podcast player where you can save pocasts to your playlist and search podcasts
 - User can sort their playlist by title or author
 
 ### Architectural Pattern
-MVC for overall app.
+The overall application uses a MVC architectural pattern.
 
-MVP for React
+#### - Model -
+The model is represented on server side by the data model class Podcast along with data request services like the PodcastService class. It also includes ORM functionality through the JPA interface class in order interact with the database easier through code.
+
+#### - View -
+The view is represented by the client made with React components. It handles user requests that communicate with the API provided by the controller classes on the server. I strived to have all components handle only rendering logic after receiving data. Any data manipulation was separated out as requests to the API to take care of through the backend service.
+
+Although it is considered the View within my overall application structure, the structure of the React components on my frontend uses a MVP architectural pattern. It focuses on a top level component Podcasts that acts as the presenter and communicates with the model (the backend service) to get data. When the backend service sends data back, the presenter then sends the response to the respective views.
+
+#### - Controller -
+The controller is represented by all of the controller classes such as the PodcastController and the SearchController. I separated them out to handle different contexts of requests. For the PodcastController, it communicates with the model to update the podcasts table in the database. The SearchController communicates with an exteral third-party API using methods from PodcastService.
+
+
 
 ### Backend Service
 need to integrate postman route examples
