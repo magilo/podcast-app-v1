@@ -13,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,8 +29,6 @@ public class PodcastController {
   @Autowired
   PodcastRepository podcastRepository;
 
-
-
   @GetMapping("/podcasts")
   public ResponseEntity<List<Podcast>> getAllpodcasts(
       @RequestParam(required = false) String sort,
@@ -40,7 +37,6 @@ public class PodcastController {
       List<Podcast> podcasts = new ArrayList<Podcast>();
       System.out.println("inside get " + sort + " | " + order);
       if (sort == null || order == null) {
-        // podcasts = podcastRepository.findAll();
         podcasts = podcastRepository.findAllByOrderByIdAsc();
       } else if (sort.equals("title") && order.equals("asc")) {
         podcasts = podcastRepository.findAllByOrderByTitleAsc();
@@ -52,7 +48,6 @@ public class PodcastController {
       } else if (sort.equals("author") && order.equals("desc")) {
         podcasts = podcastRepository.findAllByOrderByNameDesc();
       }
-
       if (podcasts.isEmpty()) {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
       }
