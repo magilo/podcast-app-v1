@@ -83,8 +83,7 @@ This directory hosts a full React app along with React components for frontend f
 <br/>
 chart of React components with parent-child relationships
 <br/>
-![frontend-components drawio](https://user-images.githubusercontent.com/53962625/157700196-0f718863-5290-45d2-a3f0-9dbc272ddb18.png)
-
+<img alt="frontend components" src="https://user-images.githubusercontent.com/53962625/157700196-0f718863-5290-45d2-a3f0-9dbc272ddb18.png">
 
 ## Architectural Requirements
 ### Features
