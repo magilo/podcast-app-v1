@@ -75,12 +75,9 @@ public class PodcastService {
 
     List<Podcast> results = new ArrayList<Podcast>();
 
-    // for heroku
-    String API_KEY = System.getenv("API_KEY");
-    if (API_KEY == null) {
-      API_KEY = Secrets2.getAPI_KEY();
-    }
-    // System.out.println("API_KEY " + API_KEY);
+    // for heroku deploy
+    String API_KEY = System.getenv("LISTEN_NOTES_API_KEY");
+
     try {
       Client objClient = new Client(API_KEY);
       HashMap<String, String> parameters = new HashMap<>();
