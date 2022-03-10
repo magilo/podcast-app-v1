@@ -17,11 +17,8 @@ class Search extends Component {
   }
 
   handleSearchSubmitCB = async (childData) => {
-    // this.setState({ userReqParams: childData })
     try {
-      // const { data } = await axios.get(`api/samplelist/search?${this.state.searchByParams}=${childData}`)
       const { data } = await axios.get(`api/podcasts/search?${this.state.searchByParams}=${childData}`)
-      console.log(this.state.searchByParams, childData);
       this.setState({ userReqParams: childData, results: data })
     } catch (err) {
       console.log(err)
@@ -41,16 +38,6 @@ class Search extends Component {
     //pass data from Results to top level Podcasts
     this.props.addPodcastCB(childData)
   }
-
-  //add this as initial search data?
-  // async componentDidMount() {
-  //   try {
-  //     const { data } = await axios.get('/api/samplelist')
-  //     this.setState({ results: data });
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-  // }
 
 
   render() {

@@ -45,7 +45,7 @@ public class SearchController {
     }
   }
 
-  //original samplelist get function
+  // original samplelist get function
   @GetMapping("/samplelist")
   public ResponseEntity<JsonObject> getAllData() {
     try {
@@ -56,21 +56,18 @@ public class SearchController {
     }
   }
 
+  // mock up function for searching samplelist
   @GetMapping("samplelist/search")
   public ResponseEntity<JsonArray> searchSampleList(
       @RequestParam(required = false) String name,
       @RequestParam(required = false) String title) {
     try {
       if (name != null) {
-        System.out.println("title " + title);
-        System.out.println("name " + name);
         JsonArray matchingName = podcastService.searchByName(name);
         return new ResponseEntity<>(matchingName, HttpStatus.OK);
       }
 
       if (title != null) {
-        System.out.println("title " + title);
-        System.out.println("name " + name);
         JsonArray matchingTitle = podcastService.searchByTitle(title);
         return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
       }

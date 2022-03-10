@@ -50,7 +50,6 @@ class Podcasts extends Component {
   }
 
   handleSortByCB = async (childSort, childOrder) => {
-    // console.log('from child', childSort, childOrder)
     //receives child data from Playlist
     try {
       const res = await axios.get(`/api/podcasts?sort=${childSort}&order=${childOrder}`);
@@ -64,11 +63,9 @@ class Podcasts extends Component {
   }
 
   handleLikePodcastCB = async (childData) => {
-    console.log("handlike", childData)
     //receives id child data from PodcastView
     try {
       const res = await axios.put(`api/podcasts/${childData}/like`)
-      console.log('res', res)
       if (res.status === 200) {
         this.setState({ podcastDetails: res.data })
       }
@@ -88,7 +85,7 @@ class Podcasts extends Component {
   }
 
   render() {
-    const { podcastDetails, playlist, podcastLikeCounter } = this.state
+    const { podcastDetails, playlist } = this.state
     return (
       <div className="App-body">
         <div className="App-search">

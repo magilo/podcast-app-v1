@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-//this can be a functional component
+//refactor to functional component
 
 class Playlist extends Component {
   constructor(props) {
