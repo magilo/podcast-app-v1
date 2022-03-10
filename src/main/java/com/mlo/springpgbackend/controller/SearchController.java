@@ -24,6 +24,28 @@ public class SearchController {
   @Autowired
   private PodcastService podcastService;
 
+  @GetMapping("podcasts/search")
+  public ResponseEntity<List<Podcast>> searchPodcasts(
+      @RequestParam(required = false) String author,
+      @RequestParam(required = false) String title) {
+    try {
+      if (author != null) {
+        List<Podcast> searchForName = podcastService.getApiData(author, "author");
+        return new ResponseEntity<>(searchForName, HttpStatus.OK);
+      }
+
+      if (title != null) {
+        List<Podcast> matchingTitle = podcastService.getApiData(title, "title");
+        return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
+      }
+      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    } catch (Exception e) {
+      e.printStackTrace();
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+  }
+
+  //original samplelist get function
   @GetMapping("/samplelist")
   public ResponseEntity<JsonObject> getAllData() {
     try {
@@ -50,27 +72,6 @@ public class SearchController {
         System.out.println("title " + title);
         System.out.println("name " + name);
         JsonArray matchingTitle = podcastService.searchByTitle(title);
-        return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
-      }
-      return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    } catch (Exception e) {
-      e.printStackTrace();
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-    }
-  }
-
-  @GetMapping("podcasts/search")
-  public ResponseEntity<List<Podcast>> searchPodcasts(
-      @RequestParam(required = false) String author,
-      @RequestParam(required = false) String title) {
-    try {
-      if (author != null) {
-        List<Podcast> searchForName = podcastService.getApiData(author, "author");
-        return new ResponseEntity<>(searchForName, HttpStatus.OK);
-      }
-
-      if (title != null) {
-        List<Podcast> matchingTitle = podcastService.getApiData(title, "title");
         return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
       }
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
