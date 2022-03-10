@@ -71,8 +71,8 @@ public class SearchController {
       @RequestParam(required = false) String title) {
     try {
       if (author != null) {
-        System.out.println("title " + title);
-        System.out.println("author " + author);
+        // System.out.println("title " + title);
+        // System.out.println("author " + author);
         // JsonArray matchingName = podcastService.searchByName(author);
 
         List<Podcast> searchForName = podcastService.getApiData(author, "author");
@@ -81,10 +81,12 @@ public class SearchController {
       }
 
       if (title != null) {
-        System.out.println("title " + title);
-        System.out.println("author " + author);
+        // System.out.println("title " + title);
+        // System.out.println("author " + author);
         // JsonArray matchingTitle = podcastService.searchByTitle(title);
+        // System.out.println(" inside title");
         List<Podcast> matchingTitle = podcastService.getApiData(title, "title");
+        // System.out.println("title in search" + matchingTitle);
         return new ResponseEntity<>(matchingTitle, HttpStatus.OK);
       }
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
