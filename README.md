@@ -83,6 +83,7 @@ This directory hosts a full React app along with React components for frontend f
 <br/>
 chart of React components with parent-child relationships
 <br/>
+
 <img alt="frontend components" src="https://user-images.githubusercontent.com/53962625/157700196-0f718863-5290-45d2-a3f0-9dbc272ddb18.png">
 
 ## Architectural Requirements
@@ -149,8 +150,6 @@ The data model class Podcast uses the principle of encapsulation because the sta
 <!-- ## Project Preview (video) -->
 
 ## Views and Overall User Flow
-- descriptions for the overall user flow
-- anywhere you made distinct design decisions
 My application view is divided into three main view sections: search for podcasts, view selected podcast and current playlist.
 
 ### SEARCH VIEW
@@ -167,9 +166,12 @@ It will display a list of the results after hitting enter or clicking the search
 When submitting the user request, the client will send a request to the the search route in the SearchController of my backend API. The backend service then communicates with the Listen Notes API by sending a get request with the user's search term and parameters. When the response is recieved by my backend service, the data is parsed to work with my application's podcast data model and then the result is sent back to the client for the User to see.
 After a User gets the result list back, they can interact with the list by selecting to view the details of a specific podcast. This will be rendered in the Podcast View. The user can also select a specific podcast to add to their current playlist and save it there.
 <br />
+
 - Add button - triggers a callback function that sends a client POST request to the backend service with the selected podcast's data and adds the podcast to the database. A GET request is sent subsequently to get an updated list from the database and pass the updated props to the Playlist view.
 <br />
+
 - Info button - triggers a callback function to send the selected podcasts's data as updated props to the Podcast View component
+<br />
 
 A distinct design decision I made in the Search View was to set up the search route so that it accepts the user's search term and parameters but not implement any sort of searching method on the sample data that I was initially working with. I had decided ahead of time to research and integrate a third party API and knew that the API would have it's own search functionality that I could take advantage of. If the app had access to different types of data sets, I would then build out my search function to handle searches from different APIs or existing data sets depending on the format.
 
@@ -178,8 +180,8 @@ A distinct design decision I made in the Search View was to set up the search ro
   <img height="400" alt="empty view" src="https://user-images.githubusercontent.com/53962625/157715911-8a60cbc9-8928-4a38-8485-cc765c64a6db.png"/>
   <img height="400" alt="view" src="https://user-images.githubusercontent.com/53962625/157715908-03132303-35b5-4066-959f-3ad090102110.png"/>
 </p>
-The Podcast View interface allows the user to view the details of a specific podcast. They can see the title, image, author, description and a audio bar that allows them to play or pause the podcast. This view is rendered when the User interacts with Search View or Playlist View by clicking on the info button of a podcast and the client passes the selected podcast's data to the Podcast view React component as props. The component itself does not communicate with my backend API to get podcast data by id as the data is already available when the lists are rendered in Search and Playlist. Clicking the info button on a podcast triggers a callback function on the item in the list to pass data back to the top level component.
-(maybe it does communicate for likes and dislikes)
+The Podcast View interface allows the user to view the details of a specific podcast. They can see the title, image, author, description and a audio bar that allows them to play or pause the podcast. This view is rendered when the User interacts with Search View or Playlist View by clicking on the info button of a podcast and the client passes the selected podcast's data to the Podcast view React component as props. The component itself does not communicate with my backend API to get podcast data by id. The data is already available when the lists are rendered in Search and Playlist. Clicking the info button on a podcast triggers a callback function on the item in the list to pass data back to the top level component.
+<!-- (maybe it does communicate for likes and dislikes) -->
 
 
 
@@ -191,8 +193,10 @@ The Podcast View interface allows the user to view the details of a specific pod
 </p>
 The Playlist View interface allows the user to add podcasts from the search results and save them to a playlist. They can then select a podcast to see more details in the Podcast View or remove a podcast from the playlist by clicking the delete button. The data rendered in the playlist is persistent as it comes from the database. Playlist receives props from the top level component.
 <br />
+
 - Delete button - triggers a callback function that sends a client DELETE by id request to the backend service with the selected podcast's id. The podcast is removed from the database. A GET request is sent subsequently to get an updated list from the database and pass the updated props to the Playlist view.
 <br />
+
 - Info button - triggers a callback function to send the selected podcasts's data as updated props to the Podcast View component
 
 
