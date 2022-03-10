@@ -90,7 +90,8 @@ class Podcasts extends Component {
 
         <div className="App-playlist">
           <h4> playlist </h4>
-          <div><SortBy sortByCB={this.handleSortByCB} /></div>
+          <div>
+            <SortBy sortByCB={this.handleSortByCB} /></div>
           <Playlist
             playlist={playlist}
             viewDetailsCB={this.handleViewDetailsCB}
