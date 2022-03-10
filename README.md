@@ -112,8 +112,6 @@ The controller is represented by all of the controller classes such as the Podca
 
 
 ### Backend Service
-need to integrate postman route examples
-
 The backend service is created via Spring Boot with JPA and PostgreSQL.
 The service is saved in the `src/main/java/com/mlo/springpgbackend` folder.
 The API has separate controllers for search routes and podcast routes that interact with the database. See views for more details on how the client interacts with the API.
@@ -122,6 +120,20 @@ There are CRUD operations to interact with the database such as:
 - getting a list of podcasts
 - deleting a podcast by id
 - updating the like counter <<< addd thissss before submit
+
+
+API route example:
+`http://localhost:8080/api/podcasts?sort=author&order=asc`
+
+<img width="500" alt="api" src="https://user-images.githubusercontent.com/53962625/157724727-9408f144-8bc6-4aff-a09c-427cde2dbf73.png">
+<br/>
+
+GET sorted by author in ascending order.
+- Request is sent with query params:
+ `{sort:author, order:asc}`
+- Responds with a JSON list of podcasts from the podcasts table in sorted order.
+
+
 
 ### 3rd Party RESTful API
 [Listen Notes](https://www.listennotes.com/api/docs/)
