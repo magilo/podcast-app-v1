@@ -4,6 +4,7 @@ A podcast player where you can save pocasts to your playlist and search podcasts
 https://springboot-podcasts.herokuapp.com/
 
 ## About
+This project was created as an exercise to learn Java and build a fullstack application. The focus is on a backend service using Java that can be interacted in various ways by the user. Coming from JavaScript, I researched the Express equivalent for Java and landed on using the Spring Boot framework to create the backend and host the frontend. I chose to make a podcast player as I've been into audiobooks recently.
 
 ## Technologies Used
 - Java 11
@@ -11,6 +12,37 @@ https://springboot-podcasts.herokuapp.com/
 - Spring Boot 2.6.4
 - React.js
 - Node.js v16.14.0
+
+## Setup
+#### Setup for project on local environment:
+- You will need `node` and `npm` installed globally on your machine.
+- Git fork this repository into your desired directory. [[forking guide]](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+
+#### Install dependencies:
+```sh
+npm install
+```
+
+#### Start local server:
+```sh
+npm start
+```
+- Open `http://localhost:3000/api-docs/#/` in your browser to access api docs.
+- Nodemon will watch for any changes in the files
+
+
+#### Run tests:
+```sh
+npm test
+```
+- Jest will watch for any changes in the files
+
+
+#### Notes:
+- Make sure your Node version is at least version 14.
+- Please note swagger-jsdoc is using v6.0.0 in this project. Other versions are not guaranteed to work.
+
+get your own api key
 
 
 ## Architectural Overview
@@ -127,9 +159,7 @@ Delete button - triggers a callback function that sends a client DELETE by id re
 Info button - triggers a callback function to send the selected podcasts's data as updated props to the Podcast View component
 
 
-## Set up
 
-get your own api key
 
 ## Room for Improvement
 
