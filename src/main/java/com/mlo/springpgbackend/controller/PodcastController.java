@@ -49,12 +49,11 @@ public class PodcastController {
       @RequestParam(required = false) String sort,
       @RequestParam(required = false) String order) {
     try {
-      // List<Podcast> podcasts = podcastRepository.findAll();
-
       List<Podcast> podcasts = new ArrayList<Podcast>();
       System.out.println("inside get " + sort + " | " + order);
       if (sort == null || order == null) {
-        podcasts = podcastRepository.findAll();
+        // podcasts = podcastRepository.findAll();
+        podcasts = podcastRepository.findAllByOrderByIdAsc();
       } else if (sort.equals("title") && order.equals("asc")) {
         podcasts = podcastRepository.findAllByOrderByTitleAsc();
         System.out.println("title asc");
